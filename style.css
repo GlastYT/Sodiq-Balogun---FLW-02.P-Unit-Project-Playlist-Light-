@@ -32,6 +32,7 @@ h1 {
   display: block;
   height: 100px;
   width: auto;
+  padding: 5px;
   
 }
 
@@ -51,10 +52,10 @@ h1 {
 
 .display-link a {
   display: block;
-  font-size: 18px;
+  font-size: 19px;
   height: 100px;
   font-weight: bold;
-  
+  margin: 0px 0px 10px 0px;
 }
 
 .form {
