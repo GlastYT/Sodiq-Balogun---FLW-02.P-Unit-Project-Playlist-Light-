@@ -7,6 +7,11 @@ h1 {
   text-align: center;
 }
 
+p {
+  text-align: center;
+  justify-content: center;
+}
+
 .display {
   display: flex;
   justify-content: space-around;
@@ -25,6 +30,10 @@ h1 {
 @media screen and (max-width: 600px) {
   .column {
     width: 100%;
+  }
+
+  .form {
+    width: 75%
   }
 }
 
@@ -46,6 +55,7 @@ h1 {
 .display-artist p {
   font-size: 18px;
   height: 100px;
+  font-weight: bold;
   
 }
 
@@ -56,6 +66,7 @@ h1 {
   height: 100px;
   font-weight: bold;
   margin: 0px 0px 10px 0px;
+  color : white;
 }
 
 .form {
@@ -68,19 +79,61 @@ input {
   padding: 5px 10px;
   font-size: 14px;
   color: black;
+  max-height : 33.2px;
 }
 
 button {
   font-size: 14px;
   padding: 5px 10px;
   color: black;
+  display: flex;
+  margin:auto;
 }
 
 body {
-  background: url(https://i.pinimg.com/originals/b8/4f/41/b84f4195a6d33c93d01111287c0c7b7e.jpg);
+  background-color : lightblue;
+  /* background: url(https://i.pinimg.com/originals/b8/4f/41/b84f4195a6d33c93d01111287c0c7b7e.jpg); */
 color: white;
 }
 
 h4{
   color: white;
 }
+
+  /* Make these long when enough space and stacked when not.*/
+  @media screen and (min-width: 800px) {
+    .inputs{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+    .inputsandclouds{
+      display: flex;
+      justify-content: center;
+    }
+    .cloud1{
+  padding-right: 75px;
+}
+
+.cloud2{
+  padding-left: 75px;
+}
+    
+}
+
+@media screen and (max-width: 799px) {
+  .inputs{
+    display: block;
+    justify-content: center;
+  }
+  .inputsandclouds{
+    display: flex;
+    justify-content: center;
+    
+  }
+  .form{
+    width : 54%;
+  }
+}
+
+

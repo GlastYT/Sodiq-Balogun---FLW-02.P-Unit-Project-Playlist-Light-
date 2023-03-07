@@ -9,6 +9,7 @@ let songLink = document.querySelector(".song-link");
 
 // button variable
 let add = document.querySelector(".add");
+let shuffle = document.querySelector(".shuffle");
 
 
 // task 6: declare variables for your display divs: the image url, song name, artist, and song link. Go back to the HTML to check that you are using the correct class names.
@@ -36,8 +37,16 @@ const TheLoneliest = {songName: "THE LONELIEST", imageUrl: "https://i.ytimg.com/
 // task 13: inside each object, add key/value pairs to store the image url, song name, artist, and song link.
 // task 14: create an array that stores all of the objects.
 const allSongs = [PeopleWatching, FeelsLike, OAMOT, TFFA, Traitor, TheLoneliest]
+console.log(allSongs)
 
-//REFACTOR LOOPS DAY 
+const songsList = [{ songName: "People Watching", imageUrl: "https://i.ytimg.com/vi/goqqohUitmw/maxresdefault.jpg", artist: "Conan Gray", songLink: "https://youtu.be/noJ4I3RBoEY" },
+{songName: "Feels Like", imageUrl: "https://assets.teenvogue.com/photos/618de539a6fc4c30472f6c10/16:9/w_4095,h_2303,c_limit/Gracie%20(39)%20-%20by%20Vince%20Aung.jpg", artist: "Gracie Abrams", songLink: "https://youtu.be/ptznWGs4GKg"},
+{songName: "Only A Matter of Time", imageUrl: "https://i.ytimg.com/vi/eg2KWIpZW-U/maxresdefault.jpg", artist: "Joshua Bassett", songLink: "https://youtu.be/eg2KWIpZW-U"},
+{songName: "Till Forever Falls Apart", imageUrl: "https://i.ytimg.com/vi/gWdjDwYuejI/maxresdefault.jpg", artist: "Ashe & FINNEAS", songLink: "https://youtu.be/gWdjDwYuejI"},
+{songName: "Traitor", imageUrl: "https://images.genius.com/3b2a66301e2d8cc545278f52affe41bd.1000x1000x1.jpg", artist: "Olivia Rodrigo", songLink: "https://youtu.be/CRrf3h9vhp8"},
+{songName: "THE LONELIEST", imageUrl: "https://i.ytimg.com/vi/odWKEfp2QMY/maxresdefault.jpg", arist: "Maneskin", songLink: "https://youtu.be/odWKEfp2QMY"}];
+
+//REFACTOR LOOPS DAY   
 // task 15: update your `addSongInfo` function so the input values are saved in as values in a new object.
 // task 16: update your `.push()` so the input object is added to your array of objects.
 // task 17: update your loops based on your new array of objects.
@@ -47,19 +56,25 @@ const allSongs = [PeopleWatching, FeelsLike, OAMOT, TFFA, Traitor, TheLoneliest]
 
 
 function addSongInfo() {
-
   // task 9: declare a variable to save the user input of the image url. Declare three more variables that save user input: One for the song names, one for the artists, and a last one for the song links.
 inputImageUrl = image.value;
 inputSongName = songName.value;
 inputArtistName = artist.value;
 inputSongLink = songLink.value;
-console.log(inputImageUrl, inputSongName, inputArtistName, inputSongLink)
+ImageUrlnoSpace = inputImageUrl.trim();
+SongNamenoSpace = inputSongName.trim();
+ArtistNamenoSpace = inputArtistName.trim();
+SongLinknoSpace = inputSongLink.trim();
+//console.log(inputImageUrl, inputSongName, inputArtistName, inputSongLink)
 
   // task 10: use `.push()` to add each input value to the correct array.
+if (ImageUrlnoSpace != "" && SongNamenoSpace != "" && ArtistNamenoSpace != "" && SongLinknoSpace != "") {
 imageUrls.push(inputImageUrl)
 songNames.push(inputSongName)
 artistNames.push(inputArtistName)
 songLinks.push(inputSongLink)
+console.log(inputImageUrl, inputSongName, inputArtistName, inputSongLink)
+}
 }
 
 
@@ -78,7 +93,7 @@ function emptyDisplay() {
 
 function displaySongInfo() {
   // task 8: loop through your images array and display the images to your songs in the correct div. Create three more loops. One for the song names, one for the artists, and a last one for the song links.
-for (let i = 0; i < imageUrls.length; i++) {
+/* for (let i = 0; i < imageUrls.length; i++) {
   let imageSource = document.createElement("img")
   imageSource.src = imageUrls[i]
   imageDisplay.appendChild(imageSource)
@@ -89,15 +104,44 @@ for (let i = 0; i < imageUrls.length; i++) {
   let artistSource = document.createElement("p")
   artistSource.append(artistNames[i])
   artistDisplay.append(artistSource)
-  let songLinkSource = document.createElement("a")
-  songLinkSource.append(songLinks[i])
-  songLinkDisplay.append(songLinkSource)  
+  //let songLinkSource = document.createElement("a")
+  songLinkDisplay.insertAdjacentHTML("beforeend", `<p><a href=${songLinks[i]}>${songLinks[i]}</a></p>`) 
+} */
+  
+songsList.forEach(function(song) {
+  console.log(song.imageUrl)
+  let imageSource = document.createElement("img");
+  imageSource.src = song.imageUrl;
+  imageDisplay.appendChild(imageSource);
+  let songSource = document.createElement("p");
+  songSource.append(song.songName)
+  songNameDisplay.appendChild(songSource);
+  let artistSource = document.createElement("p");
+  artistSource.append(song.artist);
+  artistDisplay.appendChild(artistSource);
+  songLinkDisplay.insertAdjacentHTML("beforeend", `<p><a href=${song.songLink}>${song.songLink}</a></p>`)
+});
+  
 }
+
+function shuffleSongInfo() {
+  //let i = Math.round(Math.random() * 5)
+  shuffle(songsList)
+  
+  console.log(i)
+  let imageSource = document.createElement("img")
+  imageSource.src = imageUrls[i]
+  imageDisplay.appendChild(imageSource)
+  console.log("This function works!")
+  let songSource = document.createElement("p")
+  songSource.append(songNames[i])
+  songNameDisplay.append(songSource)
+  let artistSource = document.createElement("p")
+  artistSource.append(artistNames[i])
+  artistDisplay.append(artistSource)
+  //let songLinkSource = document.createElement("a")
+  songLinkDisplay.insertAdjacentHTML("beforeend", `<p><a href=${songLinks[i]}>${songLinks[i]}</a></p>`)
 }
-
-
-
-
 
 // click event to add and display songs
 add.onclick = function() {
@@ -105,6 +149,10 @@ add.onclick = function() {
   addSongInfo();
   displaySongInfo();
 };
+
+shuffle.onclick = function() {
+  shuffleSongInfo();
+}
 
 // function call to display stored songs
 displaySongInfo();
