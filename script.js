@@ -33,7 +33,7 @@ const FeelsLike = {songName: "Feels Like", imageUrl: "https://assets.teenvogue.c
 const OAMOT = {songName: "Only A Matter of Time", imageUrl: "https://i.ytimg.com/vi/eg2KWIpZW-U/maxresdefault.jpg", artist: "Joshua Bassett", songLink: "https://youtu.be/eg2KWIpZW-U"}
 const TFFA = {songName: "Till Forever Falls Apart", imageUrl: "https://i.ytimg.com/vi/gWdjDwYuejI/maxresdefault.jpg", artist: "Ashe & FINNEAS", songLink: "https://youtu.be/gWdjDwYuejI"}
 const Traitor = {songName: "Traitor", imageUrl: "https://images.genius.com/3b2a66301e2d8cc545278f52affe41bd.1000x1000x1.jpg", artist: "Olivia Rodrigo", songLink: "https://youtu.be/CRrf3h9vhp8"}
-const TheLoneliest = {songName: "THE LONELIEST", imageUrl: "https://i.ytimg.com/vi/odWKEfp2QMY/maxresdefault.jpg", arist: "Maneskin", songLink: "https://youtu.be/odWKEfp2QMY"}
+const TheLoneliest = {songName: "THE LONELIEST", imageUrl: "https://i.ytimg.com/vi/odWKEfp2QMY/maxresdefault.jpg", artist: "Maneskin", songLink: "https://youtu.be/odWKEfp2QMY"}
 // task 13: inside each object, add key/value pairs to store the image url, song name, artist, and song link.
 // task 14: create an array that stores all of the objects.
 const allSongs = [PeopleWatching, FeelsLike, OAMOT, TFFA, Traitor, TheLoneliest]
@@ -44,7 +44,7 @@ const songsList = [{ songName: "People Watching", imageUrl: "https://i.ytimg.com
 {songName: "Only A Matter of Time", imageUrl: "https://i.ytimg.com/vi/eg2KWIpZW-U/maxresdefault.jpg", artist: "Joshua Bassett", songLink: "https://youtu.be/eg2KWIpZW-U"},
 {songName: "Till Forever Falls Apart", imageUrl: "https://i.ytimg.com/vi/gWdjDwYuejI/maxresdefault.jpg", artist: "Ashe & FINNEAS", songLink: "https://youtu.be/gWdjDwYuejI"},
 {songName: "Traitor", imageUrl: "https://images.genius.com/3b2a66301e2d8cc545278f52affe41bd.1000x1000x1.jpg", artist: "Olivia Rodrigo", songLink: "https://youtu.be/CRrf3h9vhp8"},
-{songName: "THE LONELIEST", imageUrl: "https://i.ytimg.com/vi/odWKEfp2QMY/maxresdefault.jpg", arist: "Maneskin", songLink: "https://youtu.be/odWKEfp2QMY"}];
+{songName: "THE LONELIEST", imageUrl: "https://i.ytimg.com/vi/odWKEfp2QMY/maxresdefault.jpg", artist: "Maneskin", songLink: "https://youtu.be/odWKEfp2QMY"}];
 
 //REFACTOR LOOPS DAY   
 // task 15: update your `addSongInfo` function so the input values are saved in as values in a new object.
@@ -69,11 +69,12 @@ SongLinknoSpace = inputSongLink.trim();
 
   // task 10: use `.push()` to add each input value to the correct array.
 if (ImageUrlnoSpace != "" && SongNamenoSpace != "" && ArtistNamenoSpace != "" && SongLinknoSpace != "") {
-imageUrls.push(inputImageUrl)
-songNames.push(inputSongName)
-artistNames.push(inputArtistName)
-songLinks.push(inputSongLink)
-console.log(inputImageUrl, inputSongName, inputArtistName, inputSongLink)
+let newObject = {}
+songsList.push(newObject)
+newObject.imageUrl = inputImageUrl;
+newObject.songName = inputSongName;
+newObject.artist = inputArtistName;
+newObject.songLink = inputSongLink;
 }
 }
 
@@ -93,20 +94,6 @@ function emptyDisplay() {
 
 function displaySongInfo() {
   // task 8: loop through your images array and display the images to your songs in the correct div. Create three more loops. One for the song names, one for the artists, and a last one for the song links.
-/* for (let i = 0; i < imageUrls.length; i++) {
-  let imageSource = document.createElement("img")
-  imageSource.src = imageUrls[i]
-  imageDisplay.appendChild(imageSource)
-  console.log("This function works!")
-  let songSource = document.createElement("p")
-  songSource.append(songNames[i])
-  songNameDisplay.append(songSource)
-  let artistSource = document.createElement("p")
-  artistSource.append(artistNames[i])
-  artistDisplay.append(artistSource)
-  //let songLinkSource = document.createElement("a")
-  songLinkDisplay.insertAdjacentHTML("beforeend", `<p><a href=${songLinks[i]}>${songLinks[i]}</a></p>`) 
-} */
   
 songsList.forEach(function(song) {
   console.log(song.imageUrl)
@@ -124,12 +111,14 @@ songsList.forEach(function(song) {
   
 }
 
+function shuffleSongs(array) {
+  array.sort(() => Math.random() - 0.5);
+}
 function shuffleSongInfo() {
-  //let i = Math.round(Math.random() * 5)
-  shuffle(songsList)
-  
-  console.log(i)
-  let imageSource = document.createElement("img")
+  let i = Math.round(Math.random() * 5)
+  shuffleSongs(songsList);
+  console.log(songsList);
+  /* let imageSource = document.createElement("img")
   imageSource.src = imageUrls[i]
   imageDisplay.appendChild(imageSource)
   console.log("This function works!")
@@ -138,9 +127,9 @@ function shuffleSongInfo() {
   songNameDisplay.append(songSource)
   let artistSource = document.createElement("p")
   artistSource.append(artistNames[i])
-  artistDisplay.append(artistSource)
+  artistDisplay.append(artistSource) */
   //let songLinkSource = document.createElement("a")
-  songLinkDisplay.insertAdjacentHTML("beforeend", `<p><a href=${songLinks[i]}>${songLinks[i]}</a></p>`)
+  // songLinkDisplay.insertAdjacentHTML("beforeend", `<p><a href=${songLinks[i]}>${songLinks[i]}</a></p>`)
 }
 
 // click event to add and display songs
